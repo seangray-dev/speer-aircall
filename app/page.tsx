@@ -1,7 +1,15 @@
-import Image from 'next/image';
+import ActivityFeed from './layout/AcitivityFeed';
+import Footer from './layout/Footer';
+import Header from './layout/Header';
 
 export default function Home() {
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'></main>
+    <main className='flex h-screen flex-col items-center justify-between'>
+      <Header />
+      <div className='flex-1 overflow-y-auto'>
+        <ActivityFeed />
+      </div>
+      <Footer />
+    </main>
   );
 }
