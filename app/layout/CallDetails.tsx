@@ -1,17 +1,29 @@
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { fetchCallDetails } from '@/lib/api';
+import { convertDuration, formatDate, formatTime, getAmPm } from '@/lib/format';
 import {
-  convertDuration,
-  formatDate,
-  formatTime,
-  getAmPm,
-  getIcon,
-} from '@/lib/format';
-import { MoreVerticalIcon } from 'lucide-react';
+  MoreVerticalIcon,
+  PhoneForwardedIcon,
+  PhoneIncomingIcon,
+  PhoneMissedIcon,
+} from 'lucide-react';
 
 export default async function CallDetails({ id }: { id: string }) {
   const call = await fetchCallDetails(id);
   const callerId = call.from || 'Private Number';
+
+  const getIcon = (call_type: string) => {
+    switch (call_type) {
+      case 'missed':
+        return <PhoneMissedIcon size={18} className='text-red-500' />;
+      case 'answered':
+        return <PhoneIncomingIcon size={18} className='text-primary' />;
+      case 'voicemail':
+        return <PhoneForwardedIcon size={18} className='text-red-500' />;
+      default:
+        return <PhoneMissedIcon size={18} className='text-red-500' />;
+    }
+  };
 
   return (
     <div className='mt-4'>
