@@ -1,3 +1,5 @@
+'use client'
+
 export const archiveCall = (callId: string) => {
   const calls = JSON.parse(localStorage.getItem('calls') as string) || [];
   const archivedCalls =
