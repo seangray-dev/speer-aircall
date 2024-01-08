@@ -9,7 +9,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className=' sticky bottom-0 relative flex items-center justify-between bg-white w-full border-t py-4 px-4'>
+    <footer className='sticky bottom-0 flex items-center justify-between bg-white w-full max-w-[320px] border-t py-4 px-4'>
       <div className='flex gap-8'>
         <Button variant={'ghost'} className='p-0'>
           <PhoneIcon className='text-muted-foreground' />

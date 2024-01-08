@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Header() {
   return (
-    <header className='relative md:container w-full grid grid-cols-[1fr_2fr] border-b'>
+    <header className='relative grid grid-cols-[1fr_2fr] border-b max-w-[320px]'>
       <div className='flex items-center px-4 border rounded-br-[20px] pr-12 bg-white'>
         <Link href={'/'}>
           <div className='flex items-center gap-2'>
@@ -22,12 +22,14 @@ export default function Header() {
         </Link>
       </div>
 
-      <div className='px-4 flex bg-secondary py-1 justify-end rounded-tl-[20px]'>
-        <Button
-          variant={'ghost'}
-          className='p-0 text-xs px-2 text-muted-foreground'>
-          Inbox
-        </Button>
+      <div className='flex bg-secondary py-1 justify-end rounded-tl-[20px] border-r'>
+        <Link href={'/'}>
+          <Button
+            variant={'ghost'}
+            className='p-0 text-xs px-2 text-muted-foreground'>
+            Inbox
+          </Button>
+        </Link>
         <Link href={'/archive'}>
           <Button
             variant={'ghost'}
