@@ -1,11 +1,29 @@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { formatTime, getAmPm, getIcon } from '@/lib/format';
+import { formatTime, getAmPm } from '@/lib/format';
 import { CountedCall } from '@/types';
+import {
+  PhoneForwardedIcon,
+  PhoneIncomingIcon,
+  PhoneMissedIcon,
+} from 'lucide-react';
 import CallArchiveDialog from './CallArchiveDialog';
 
 export default function CallItem({ call }: { call: CountedCall }) {
   const callerId = call.from || 'Private Number';
+
+  const getIcon = (call_type: string) => {
+    switch (call_type) {
+      case 'missed':
+        return <PhoneMissedIcon size={18} className='text-red-500' />;
+      case 'answered':
+        return <PhoneIncomingIcon size={18} className='text-primary' />;
+      case 'voicemail':
+        return <PhoneForwardedIcon size={18} className='text-red-500' />;
+      default:
+        return <PhoneMissedIcon size={18} className='text-red-500' />;
+    }
+  };
 
   return (
     <button className='focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 hover:bg-white focus:bg-white transition-all duration-300 rounded-lg w-[300px] mx-auto'>

@@ -10,15 +10,13 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
-import { archiveCall } from '@/lib/storage';
+
 import { Call } from '@/types';
 import { MoreVerticalIcon } from 'lucide-react';
 import Link from 'next/link';
 
 const CallArchiveDialog = ({ call }: { call: Call }) => {
-  const handleArchive = () => {
-    archiveCall(call.id);
-  };
+  const handleArchive = () => {};
 
   return (
     <AlertDialog>
