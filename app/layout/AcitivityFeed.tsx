@@ -18,25 +18,27 @@ export default function ActivityFeed({
 
   useEffect(() => {
     const getActivityFeed = async () => {
-      let calls = JSON.parse(localStorage.getItem('calls') as string);
+      if (typeof window !== 'undefined') {
+        let calls = JSON.parse(localStorage.getItem('calls') as string);
 
-      if (!calls) {
-        try {
-          const res = await fetch(
-            'https://charming-bat-singlet.cyclic.app/https://cerulean-marlin-wig.cyclic.app/activities'
-          );
-          if (!res.ok) throw new Error('Network response was not ok');
-          calls = await res.json();
-          localStorage.setItem('calls', JSON.stringify(calls));
-        } catch (error) {
-          console.error('Fetch error:', error);
-          // fallback to static data if API fails
-          calls = callsData;
+        if (!calls) {
+          try {
+            const res = await fetch(
+              'https://charming-bat-singlet.cyclic.app/https://cerulean-marlin-wig.cyclic.app/activities'
+            );
+            if (!res.ok) throw new Error('Network response was not ok');
+            calls = await res.json();
+            localStorage.setItem('calls', JSON.stringify(calls));
+          } catch (error) {
+            console.error('Fetch error:', error);
+            // fallback to static data if API fails
+            calls = callsData;
+          }
         }
-      }
 
-      const processedCalls = processCalls(calls);
-      setCallGroups(processedCalls);
+        const processedCalls = processCalls(calls);
+        setCallGroups(processedCalls);
+      }
     };
 
     getActivityFeed();
