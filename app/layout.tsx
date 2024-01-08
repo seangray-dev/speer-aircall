@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { StoreProvider } from './redux/StoreProvider';
 
 import { cn } from '@/lib/utils';
+import { Store } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -20,14 +22,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
-      <body
-        className={cn(
-          'min-h-screen bg-secondary font-sans antialiased',
-          inter.className
-        )}>
-        {children}
-      </body>
-    </html>
+    <StoreProvider>
+      <html lang='en'>
+        <body
+          className={cn(
+            'min-h-screen bg-secondary font-sans antialiased',
+            inter.className
+          )}>
+          {children}
+        </body>
+      </html>
+    </StoreProvider>
   );
 }
