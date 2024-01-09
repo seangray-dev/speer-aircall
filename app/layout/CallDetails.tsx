@@ -1,12 +1,14 @@
+'use client';
+
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { fetchCallDetails } from '@/lib/api';
 import { convertDuration, formatDate, formatTime, getAmPm } from '@/lib/format';
 import {
-  MoreVerticalIcon,
   PhoneForwardedIcon,
   PhoneIncomingIcon,
   PhoneMissedIcon,
 } from 'lucide-react';
+import CallArchiveDialog from './CallArchiveDialog';
 
 export default async function CallDetails({ id }: { id: string }) {
   const call = await fetchCallDetails(id);
@@ -26,7 +28,7 @@ export default async function CallDetails({ id }: { id: string }) {
   };
 
   return (
-    <div className='mt-4'>
+    <div className='mt-4 px-4'>
       <h2 className='text-xs text-muted-foreground font-bold text-center mb-4'>
         {formatDate(call.created_at)}
       </h2>
@@ -46,11 +48,7 @@ export default async function CallDetails({ id }: { id: string }) {
             </div>
           </div>
           <div className='pl-2 flex items-center gap-1 text-sm font-bold text-muted-foreground'>
-            <MoreVerticalIcon
-              size={18}
-              strokeWidth={'0.75px'}
-              className='text-muted-foreground'
-            />
+            <CallArchiveDialog call={call} />
             <div>
               <div>
                 <span>{formatTime(call.created_at)}</span>
