@@ -13,5 +13,5 @@ export type Call = {
 export type CountedCall = Call & { count: number };
 
 export type CallGroups = {
-  [date: string]: { [key: string]: CountedCall };
+  [key: string]: Call[];
 };
