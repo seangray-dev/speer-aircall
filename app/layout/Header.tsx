@@ -34,7 +34,7 @@ export default function Header() {
           <Button
             variant={'ghost'}
             className='p-0 text-xs px-2 text-muted-foreground'>
-            All Calls
+            Archive
           </Button>
         </Link>
         <Button variant={'ghost'} className='p-0 px-2'>
