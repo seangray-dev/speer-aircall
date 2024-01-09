@@ -1,3 +1,5 @@
+import { Call, CallGroups, CountedCall } from '@/types';
+
 export const formatTime = (timeString: string) => {
   const time = new Date(timeString);
   return time.toLocaleTimeString('en-US', {
@@ -28,4 +30,15 @@ export const convertDuration = (seconds: number) => {
   return `${mins} minute${mins !== 1 ? 's' : ''}, ${secs} second${
     secs !== 1 ? 's' : ''
   }`;
+};
+
+export const groupCallsByDate = (calls: Call[]): CallGroups => {
+  return calls.reduce((groupedCalls: CallGroups, call) => {
+    const date = call.created_at.split('T')[0];
+    if (!groupedCalls[date]) {
+      groupedCalls[date] = [];
+    }
+    groupedCalls[date].push(call);
+    return groupedCalls;
+  }, {});
 };
