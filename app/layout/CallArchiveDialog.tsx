@@ -10,13 +10,21 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
-
 import { Call } from '@/types';
 import { MoreVerticalIcon } from 'lucide-react';
 import Link from 'next/link';
+import { toggleArchiveCall } from '../redux/features/callsSlice';
+import { useAppDispatch } from '../redux/hooks';
 
 const CallArchiveDialog = ({ call }: { call: Call }) => {
-  const handleArchive = () => {};
+  const dispatch = useAppDispatch();
+  const archiveButtonText = call.is_archived
+    ? 'Unarchive Call'
+    : 'Archive Call';
+
+  const handleArchive = () => {
+    dispatch(toggleArchiveCall(call.id));
+  };
 
   return (
     <AlertDialog>
@@ -44,7 +52,7 @@ const CallArchiveDialog = ({ call }: { call: Call }) => {
           <AlertDialogAction
             onClick={handleArchive}
             className='bg-destructive hover:bg-destructive/90'>
-            Archive Call
+            {archiveButtonText}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
