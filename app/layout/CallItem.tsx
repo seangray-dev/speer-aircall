@@ -1,7 +1,6 @@
-import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { formatTime, getAmPm } from '@/lib/format';
-import { CountedCall } from '@/types';
+import { Call } from '@/types';
 import {
   PhoneForwardedIcon,
   PhoneIncomingIcon,
@@ -9,7 +8,7 @@ import {
 } from 'lucide-react';
 import CallArchiveDialog from './CallArchiveDialog';
 
-export default function CallItem({ call }: { call: CountedCall }) {
+export default function CallItem({ call }: { call: Call }) {
   const callerId = call.from || 'Private Number';
 
   const getIcon = (call_type: string) => {
@@ -33,11 +32,6 @@ export default function CallItem({ call }: { call: CountedCall }) {
             {getIcon(call.call_type ?? '')}
             <div className='flex items-center gap-2'>
               <p className='text-sm font-bold'>{callerId || call.to}</p>
-              {call.count > 1 && (
-                <Badge className='bg-destructive h-4 w-4 flex justify-center p-0 text-xs font-bold'>
-                  {call.count}
-                </Badge>
-              )}
             </div>
           </div>
           <div className='pl-2 flex items-center gap-1 text-sm font-bold text-muted-foreground'>
