@@ -1,10 +1,8 @@
+import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { StoreProvider } from './redux/StoreProvider';
-
-import { cn } from '@/lib/utils';
-import { Store } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
